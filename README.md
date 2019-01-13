@@ -4,8 +4,8 @@ This project demonstrates how to use [gRPC-Java](https://github.com/grpc/grpc-ja
 [reactive-grpc](https://github.com/salesforce/reactive-grpc) in order to greatly simplify the development of gRPC 
 clients and servers and avoid common pitfalls such as ignoring back-pressure.
 
-The project contains two Protobuf examples, [`helloworld.proto`](blob/master/src/main/proto/helloworld.proto) and 
-[`hello_streaming.proto`](blob/master/src/main/proto/hello_streaming.proto).
+The project contains two Protobuf examples, [`helloworld.proto`](./blob/master/src/main/proto/helloworld.proto) and 
+[`hello_streaming.proto`](./blob/master/src/main/proto/hello_streaming.proto).
 The examples have been forked from the original gRPC-Java repository, along with their client and server classes. 
 The client and server classes have then been copied and changed to use the 
 [Reactor Core](https://github.com/reactor/reactor-core) API, so that you can see the effect on the code side-by-side.
