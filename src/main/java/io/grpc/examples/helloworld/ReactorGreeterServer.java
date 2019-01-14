@@ -74,11 +74,15 @@ public class ReactorGreeterServer {
         server.blockUntilShutdown();
     }
 
+    private static HelloReply respond(HelloRequest req) {
+        return HelloReply.newBuilder().setMessage("Hello " + req.getName()).build();
+    }
+
     static class GreeterImpl extends ReactorGreeterGrpc.GreeterImplBase {
 
         @Override
         public Mono<HelloReply> sayHello(Mono<HelloRequest> request) {
-            return request.map(req -> HelloReply.newBuilder().setMessage("Hello " + req.getName()).build());
+            return request.map(ReactorGreeterServer::respond);
         }
     }
 }

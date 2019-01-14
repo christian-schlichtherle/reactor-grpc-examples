@@ -35,7 +35,7 @@ public class ReactorStreamingGreeterServer {
                 return request
                         .log() // DON'T do this in production!
                         .doOnEach(req -> simulateWorkload())
-                        .map(req -> HelloReply.newBuilder().setMessage("Hello " + req.getName()).build())
+                        .map(ReactorStreamingGreeterServer::respond)
                         .log(); // DON'T do this in production!
             }
         };
@@ -64,5 +64,9 @@ public class ReactorStreamingGreeterServer {
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    private static HelloReply respond(HelloRequest req) {
+        return HelloReply.newBuilder().setMessage("Hello " + req.getName()).build();
     }
 }
