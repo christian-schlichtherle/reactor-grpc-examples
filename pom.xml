@@ -10,7 +10,7 @@
         <version>6</version>
     </parent>
 
-    <groupId>ai.ainfinity.poc</groupId>
+    <groupId>global.namespace.poc</groupId>
     <artifactId>reactor-grpc-examples</artifactId>
     <version>0.1-SNAPSHOT</version>
 
