@@ -64,7 +64,7 @@ public class ReactorGreeterClient {
                 .log(); // DON'T do this in production!
         stub.sayHello(request)
                 .log() // DON'T do this in production!
-                .block(Duration.of(1, ChronoUnit.SECONDS));
+                .block(Duration.of(1, ChronoUnit.SECONDS)); // DON'T do this in production!
     }
 
     /**

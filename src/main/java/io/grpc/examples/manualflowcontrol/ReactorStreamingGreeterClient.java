@@ -44,7 +44,7 @@ public class ReactorStreamingGreeterClient {
                 .log(); // DON'T do this in production!
         stub.sayHelloStreaming(requests)
                 .log() // DON'T do this in production!
-                .blockLast(Duration.of(12, ChronoUnit.SECONDS));
+                .blockLast(Duration.of(12, ChronoUnit.SECONDS)); // DON'T do this in production!
 
         channel.shutdown()
                 .awaitTermination(1, TimeUnit.SECONDS);
