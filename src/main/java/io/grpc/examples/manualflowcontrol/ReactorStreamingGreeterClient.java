@@ -21,7 +21,6 @@ import io.grpc.ManagedChannelBuilder;
 import reactor.core.publisher.Flux;
 
 import java.time.Duration;
-import java.time.temporal.ChronoUnit;
 import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -44,7 +43,7 @@ public class ReactorStreamingGreeterClient {
                 .log(); // DON'T do this in production!
         stub.sayHelloStreaming(requests)
                 .log() // DON'T do this in production!
-                .blockLast(Duration.of(12, ChronoUnit.SECONDS)); // DON'T do this in production!
+                .blockLast(Duration.ofSeconds(12)); // DON'T do this in production!
 
         channel.shutdown()
                 .awaitTermination(1, TimeUnit.SECONDS);
