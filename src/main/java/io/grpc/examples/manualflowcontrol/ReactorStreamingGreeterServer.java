@@ -24,6 +24,7 @@ import java.io.IOException;
 import java.util.logging.Logger;
 
 public class ReactorStreamingGreeterServer {
+
     private static final Logger logger =
             Logger.getLogger(ReactorStreamingGreeterServer.class.getName());
 
@@ -32,11 +33,7 @@ public class ReactorStreamingGreeterServer {
 
             @Override
             public Flux<HelloReply> sayHelloStreaming(Flux<HelloRequest> request) {
-                return request
-                        .log() // DON'T do this in production!
-                        .doOnEach(req -> simulateWorkload())
-                        .map(ReactorStreamingGreeterServer::respond)
-                        .log(); // DON'T do this in production!
+                return request.map(ReactorStreamingGreeterServer::respond);
             }
         };
 
@@ -48,22 +45,11 @@ public class ReactorStreamingGreeterServer {
 
         logger.info("Listening on " + server.getPort());
 
-        Runtime.getRuntime().addShutdownHook(new Thread() {
-            @Override
-            public void run() {
-                logger.info("Shutting down");
-                server.shutdown();
-            }
-        });
+        Runtime.getRuntime().addShutdownHook(new Thread(() -> {
+            logger.info("Shutting down");
+            server.shutdown();
+        }));
         server.awaitTermination();
-    }
-
-    private static void simulateWorkload() {
-        try {
-            Thread.sleep(100); // NEVER block the current thread in production!
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
     }
 
     private static HelloReply respond(HelloRequest req) {

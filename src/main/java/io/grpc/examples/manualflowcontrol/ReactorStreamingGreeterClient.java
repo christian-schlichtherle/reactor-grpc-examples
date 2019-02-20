@@ -40,10 +40,14 @@ public class ReactorStreamingGreeterClient {
         final Flux<HelloRequest> requests = Flux
                 .fromIterable(names())
                 .map(name -> HelloRequest.newBuilder().setName(name).build())
-                .log(); // DON'T do this in production!
+                ;//.log(); // DON'T do this in production!
+
+        final long startTime = System.nanoTime();
         stub.sayHelloStreaming(requests)
                 .log() // DON'T do this in production!
                 .blockLast(Duration.ofSeconds(12)); // DON'T do this in production!
+        final long endTime = System.nanoTime();
+        System.err.println("Duration: " + Duration.ofNanos(endTime - startTime));
 
         channel.shutdown()
                 .awaitTermination(1, TimeUnit.SECONDS);
