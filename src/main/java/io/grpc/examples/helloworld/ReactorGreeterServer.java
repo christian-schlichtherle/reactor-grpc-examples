@@ -11,6 +11,7 @@ import java.util.logging.Logger;
  * Server that manages startup/shutdown of a {@code Greeter} server.
  */
 public class ReactorGreeterServer {
+
     private static final Logger logger = Logger.getLogger(ReactorGreeterServer.class.getName());
 
     private Server server;
