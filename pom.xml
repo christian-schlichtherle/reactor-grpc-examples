@@ -65,6 +65,11 @@
             <groupId>io.grpc</groupId>
             <artifactId>grpc-protobuf</artifactId>
         </dependency>
+        <dependency>
+            <groupId>black.ninia</groupId>
+            <artifactId>jep</artifactId>
+            <version>3.8.2</version>
+        </dependency>
     </dependencies>
 
     <build>
